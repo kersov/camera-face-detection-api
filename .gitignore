@@ -1,0 +1,7 @@
+node_modules
+.sass-cache
+stylesheets
+.temp
+img/sprite
+sass/sprite
+scripts/*.min.js

@@ -1,0 +1,103 @@
+{
+  "name": "camera-face-detection-api",
+  "description": "Camera Face Detection API demo",
+  "version": "0.0.1",
+  "author": "Oleksii Kersov",
+  "dependencies": {
+    "animatewithsass": "git+https://github.com/geoffgraham/animate.scss.git",
+    "bootstrap": "^4.1.3",
+    "cryptiles": "^4.1.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-compass": "^2.1.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-file-include": "^1.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-svg2png": "^2.0.2",
+    "gulp-uglify": "^2.0.1",
+    "gulp.spritesmith": "^6.3.0",
+    "hoek": "^5.0.4",
+    "lodash": "^4.17.11",
+    "merge-stream": "^1.0.1",
+    "minimatch": "^3.0.4",
+    "normalize.scss": "^0.1.0",
+    "run-sequence": "^1.2.2",
+    "static-eval": "^2.0.0",
+    "svg2png": "3.0.0",
+    "vinyl-buffer": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp-watch": "^4.3.11",
+    "stylelint": "^9.7.1",
+    "stylelint-config-rational-order": "0.0.2",
+    "stylelint-scss": "^3.3.2"
+  },
+  "homepage": "https://github.com/okersov/camera-face-detection-api",
+  "license": "ISC",
+  "main": "gulp.js",
+  "paths": {
+    "base": "./",
+    "sass": {
+      "input": "./sass/",
+      "inputName": "sass",
+      "output": "./stylesheets/",
+      "temp": "./.temp/sass/"
+    },
+    "js": {
+      "output": "./scripts/"
+    },
+    "icons": {
+      "output": "./.temp/icons/"
+    },
+    "html": {
+      "temp": "./.temp/html/"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okersov/camera-face-detection-api"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "postinstall": "npm build",
+    "stylelint": "stylelint sass/**/*.scss --fix",
+    "server": "static-server -o"
+  },
+  "config": {
+    "sass": {
+      "inputFiles": "./sass/*.scss",
+      "tempFiles": "./.temp/sass/*.css"
+    },
+    "bake": {
+      "inputFiles": "./views/index.html"
+    },
+    "cleanCss": {
+      "compatibility": "ie7"
+    },
+    "js": {
+      "inputFiles": "./scripts/index.js",
+      "options": {
+        "compress": "true",
+        "mangle": "true"
+      }
+    },
+    "icons": {
+      "inputFiles": "./img/icons/*.svg",
+      "options": {
+        "width": "25",
+        "height": "25"
+      }
+    },
+    "sprite": {
+      "inputFiles": "./.temp/icons/*.png",
+      "imgName": "icons.png",
+      "cssName": "icons.css",
+      "imgOutputDir": "./",
+      "cssOutputDir": "./sass/sprite/"
+    }
+  }
+}

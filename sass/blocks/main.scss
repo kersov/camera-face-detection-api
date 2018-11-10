@@ -1,0 +1,26 @@
+.main {
+  position: relative;
+  z-index: 1;
+  .main__heading {
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+  }
+  .main__paragraph {
+    &_first {
+      animation-duration: 0.5s;
+      animation-delay: 0.1s;
+    }
+    &_second {
+      animation-duration: 0.5s;
+      animation-delay: 0.2s;
+    }
+    &_third {
+      animation-duration: 0.5s;
+      animation-delay: 0.3s;
+    }
+    &_fourth {
+      animation-duration: 0.5s;
+      animation-delay: 0.4s;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+.header {
+  height: $height-header;
+  margin-bottom: $header-margin-bottom;
+  padding-top: $padding-top;
+}
+
+.header__icon {
+  $border-width: 5px;
+  position: relative;
+  display: block;
+  height: $height-header + $border-width + $border-width;
+  overflow: hidden;
+  color: white;
+  font-size: 42px;
+  white-space: nowrap;
+  @include bounceInDown(
+    $duration: 1s,
+    $count: $countDefault,
+    $delay: 0s,
+    $function: $functionDefault,
+    $fill: $fillDefault
+  );
+  &-text {
+    position: absolute;
+    left: -122px;
+    display: inline-block;
+    width: 250px;
+    line-height: $height-header + $border-width + $border-width;
+    transition: left 1s ease-in 0s;
+    user-select: none;
+    will-change: left;
+  }
+  &-main-text {
+    transition: margin-right 1s linear 0s;
+  }
+  &-symbol {
+    margin-left: 20px;
+  }
+  .header__icon-border {
+    $border-width: 5px;
+    position: absolute;
+    display: inline-block;
+    width: $height-header;
+    height: $height-header;
+    font-size: 42px;
+    border: $border-width $color-snow solid;
+    border-right: 0 transparent;
+    &:before {
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      display: inline-block;
+      width: $border-width;
+      min-height: 50%;
+      background-color: $color-snow;
+      transition: min-height 1s ease-in 0.5s;
+      will-change: min-height;
+      content: "";
+    }
+    &:after {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      display: inline-block;
+      width: $border-width;
+      min-height: 50%;
+      background-color: $color-snow;
+      transition: min-height 1s ease-in 0.5s;
+      will-change: min-height;
+      content: "";
+    }
+  }
+  &:hover {
+    & .header__icon-text {
+      left: 12px;
+      transition-delay: 0.5s;
+    }
+    & .header__icon-main-text {
+      margin-right: -20px;
+      transition-delay: 0.5s;
+    }
+    & .header__icon-border:before {
+      min-height: 0px;
+      transition-delay: 0s;
+    }
+    & .header__icon-border:after {
+      min-height: 0px;
+      transition-delay: 0s;
+    }
+  }
+}

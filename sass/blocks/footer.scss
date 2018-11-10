@@ -1,0 +1,9 @@
+.footer {
+  position: relative;
+  height: $height-footer;
+  padding-bottom: $padding-bottom;
+  &__icons {
+    display: inline-block;
+    float: right;
+  }
+}

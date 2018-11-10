@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--[if gte IE 9]>
+    <style type="text/css">
+      .gradient {
+         filter: none;
+      }
+    </style>
+  <![endif]-->
+  @@include('./components/googleanalytics.html')
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Camera Face Detection API demo</title>
+  <style>
+    @@include('../stylesheets/main.css')
+  </style>
+</head>
+<body>
+  <canvas id="stars" class="stars"></canvas>
+  <div class="background"></div>
+  <div class="page-wrap">
+    <header class="header">
+      <a href="https://okersov.github.io" class="header__icon">
+        <span class="header__icon-border"></span>
+        <span class="header__icon-text">
+          <span class="header__icon-main-text">Home</span>
+          <span class="header__icon-symbol">!</span>
+        </span>
+      </a>
+    </header>
+    <div class="main" role="main">
+      <h1 class="main__heading fadeInLeft">Camera Face Detection API demo</h1>
+      <noscript><b>Please enable javascript in your browser</b></noscript>
+      <div>
+        <button id="control" value="start" class="button">
+          <span class="button__text">Start</span>
+          <span class="button__text-red">Stop</span>
+        </button>
+      </div>
+      <canvas id="video"></canvas>
+
+    </div>
+  </div>
+  <footer class="footer fadeInLeft">
+    <address class="creator">&copy; 2018 Oleksii Kersov</address>
+    <section class="footer__icons">
+      <a href="https://github.com/okersov" target="_blank" title="My Github" class="icon icon_size_medium icon_type_github icon_type_social margin-left-10"></a>
+      <a href="https://twitter.com/AlexOwl29" target="_blank" title="My Twitter" class="icon icon_size_medium icon_type_twitter icon_type_social margin-left-10"></a>
+      <a href="https://www.linkedin.com/in/oleksii-kersov-865b24104/" target="_blank" title="My LinkedIn" class="icon icon_size_medium icon_type_linkedin icon_type_social margin-left-10"></a>
+    </section>
+  </footer>
+  <script>
+    @@include('../scripts/index.min.js')
+  </script>
+  @@include('./components/googleanalyticsnojs.html')
+</body>
+</html>

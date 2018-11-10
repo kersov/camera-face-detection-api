@@ -1,0 +1,73 @@
+@import "compass";
+@import "../node_modules/normalize.scss/normalize.scss";
+@import "../node_modules/animatewithsass/_properties.scss";
+@import "../node_modules/animatewithsass/_bouncing-entrances/_bounceInDown.scss";
+@import "../node_modules/animatewithsass/_fading-entrances/_fadeInLeft.scss";
+@import "../node_modules/animatewithsass/_fading-entrances/_fadeInRight.scss";
+@import "../node_modules/bootstrap/scss/mixins/_breakpoints.scss";
+@import "../node_modules/bootstrap/scss/_functions.scss";
+@import "../node_modules/bootstrap/scss/_variables.scss";
+
+
+/* General variables */
+$color-snow: #fffafa;
+$color-sky-blue: #7ec0ee;
+$color-black: #000000;
+
+$padding-main: 20px;
+$padding-top: $padding-main;
+$padding-right: $padding-main;
+$padding-bottom: 10px;
+$padding-left: $padding-main;
+
+$height-header: 50px;
+$header-margin-bottom: 50px;
+$height-outer-header: $height-header + $header-margin-bottom;
+$height-footer: 50px;
+$height-outer-footer: $height-footer + $padding-bottom;
+
+/* Specific variables */
+$color-text: $color-snow;
+$color-link: $color-sky-blue;
+$color-link-hover: #BFDDF4;
+$color-github: #24292e;
+$color-twitter: #1DA1F2;
+$color-linkedin  : #0077b5;
+
+/* Components */
+.component-main-bg {
+  // Needs latest Compass, add '@import "compass"' to your scss
+  // Permalink - use to edit and share this gradient:
+  // http://colorzilla.com/gradient-editor/#1d3c51+0,383155+100
+  background-color: #1d3c51; // Old browsers
+  @include filter-gradient(#1d3c51, #383155, vertical); // IE6-8
+  // IE9 SVG, needs conditional override of 'filter' to 'none'
+  $experimental-support-for-svg: true;
+  @include background-image(linear-gradient(top,  #1d3c51 0%,#383155 100%));
+}
+
+/* Styles */
+/* GENERAL ********************************************************************/
+@import "./blocks/general.scss";
+/******************************************************************************/
+
+/* HEADER *********************************************************************/
+@import "./blocks/header.scss";
+/******************************************************************************/
+
+/* MAIN ***********************************************************************/
+@import "./blocks/main.scss";
+/******************************************************************************/
+
+/* FOOTER *********************************************************************/
+@import "./blocks/footer.scss";
+/******************************************************************************/
+
+/* COMPONENTS *****************************************************************/
+@import "./components/icons.scss";
+@import "./components/buttons.scss";
+/******************************************************************************/
+
+/* HELPERS ********************************************************************/
+@import "./helpers.scss";
+/******************************************************************************/
