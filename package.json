@@ -5,6 +5,7 @@
   "author": "Oleksii Kersov",
   "dependencies": {},
   "devDependencies": {
+    "@babel/preset-env": "^7.1.5",
     "animatewithsass": "git+https://github.com/geoffgraham/animate.scss.git",
     "bootstrap": "^4.1.3",
     "cryptiles": "^4.1.2",

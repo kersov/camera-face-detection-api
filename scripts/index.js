@@ -26,7 +26,7 @@
   const canvas = document.getElementById('video');
   const control = document.getElementById('control');
   const ctx = canvas.getContext('2d');
-  let video;
+  let video; let videoStream;
 
   canvas.width = videoWidth;
   canvas.height = videoHeight;
@@ -40,6 +40,7 @@
       control.value = 'start';
       control.classList.remove('button-red');
       video.pause();
+      videoStream.getTracks().forEach(track => track.stop())
     }
   });
 
@@ -114,6 +115,7 @@
         },
         function(stream) {
           video = document.createElement('video');
+          videoStream = stream;
           video.srcObject = stream;
           video.addEventListener('loadeddata', function() {
             video.play(); // start playing

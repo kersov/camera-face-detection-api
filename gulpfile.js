@@ -90,7 +90,7 @@ gulp.task('uglify-js', function (cb) {
 gulp.task('babel', function (cb) {
     return gulp
       .src(pack.config.js.inputFiles)
-      .pipe(babel())
+      .pipe(babel().on('error', logError))
       .pipe(gulp.dest(pack.paths.js.temp))
 });
 
