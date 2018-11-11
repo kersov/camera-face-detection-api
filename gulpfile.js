@@ -7,7 +7,7 @@ var pack = require('./package');
 var watch = require('gulp-watch');
 var runSequence = require('run-sequence');
 var cleanCSS = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var rename = require('gulp-rename');
 var svg2png = require('gulp-svg2png');
 var buffer = require('vinyl-buffer');
@@ -16,10 +16,19 @@ var imagemin = require('gulp-imagemin');
 var merge = require('merge-stream');
 var spritesmith = require('gulp.spritesmith');
 var htmlmin = require('gulp-htmlmin');
+var clean = require('gulp-clean');
+var gutil = require('gulp-util');
+const babel = require('gulp-babel');
+
+/* UTILS **********************************************************************/
+function logError(err) {
+  gutil.log(gutil.colors.red('[Error]'), err.toString());
+}
+/******************************************************************************/
 
 /* BAKE ***********************************************************************/
 gulp.task('bake', function() {
-  gulp.src([pack.config.bake.inputFiles])
+  return gulp.src([pack.config.bake.inputFiles])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -39,12 +48,13 @@ gulp.task('compass', function () {
   return gulp
     .src(pack.config.sass.inputFiles)
     .pipe(compass({
-      sass: pack.paths.sass.input,
-      css: pack.paths.sass.temp,
-      logging: false,
-      comments: false,
-      style: 'expanded'
-    }))
+        sass: pack.paths.sass.input,
+        css: pack.paths.sass.temp,
+        logging: false,
+        comments: false,
+        style: 'expanded'
+      }).on('error', logError)
+    );
 });
 
 gulp.task('sass', ['compass'], function () {
@@ -63,18 +73,30 @@ gulp.task('sass-watch', function () {
 /******************************************************************************/
 
 /* JS *************************************************************************/
+gulp.task('clean-js', function (cb) {
+  return gulp.src('./scripts/*.min.js', {read: false})
+    .pipe(clean());
+});
+
 gulp.task('uglify-js', function (cb) {
   return gulp
-    .src(pack.config.js.inputFiles)
+    .src(pack.config.js.tempFiles)
     .pipe(uglify())
+    .on('error', logError)
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(pack.paths.js.output));
+});
 
+gulp.task('babel', function (cb) {
+    return gulp
+      .src(pack.config.js.inputFiles)
+      .pipe(babel())
+      .pipe(gulp.dest(pack.paths.js.temp))
 });
 
 gulp.task('js-watch', function () {
   return watch(pack.config.js.inputFiles, { ignoreInitial: true }, function () {
-    runSequence('uglify-js', 'bake');
+    runSequence('clean-js', 'babel', 'uglify-js', 'bake');
   });
 });
 /******************************************************************************/
@@ -124,12 +146,21 @@ gulp.task('htmlmin', function() {
 });
 /******************************************************************************/
 
+/* REMOVE BUILD FILES *********************************************************/
+gulp.task('clean', function() {
+  gulp.src('.temp', {read: false})
+    .pipe(clean());
+  return gulp.src('./index.html', {read: false})
+    .pipe(clean());
+});
+/******************************************************************************/
+
 /* GENERAL ********************************************************************/
 
 gulp.task('watch', ['sass-watch', 'bake-watch', 'js-watch']);
 
 gulp.task('build', function () {
-  runSequence('img', 'sass', 'uglify-js', 'bake', 'htmlmin');
+  runSequence('clean', 'img', 'sass', 'clean-js', 'babel', 'uglify-js', 'bake', 'htmlmin');
 });
 
 gulp.task('default', function () {
